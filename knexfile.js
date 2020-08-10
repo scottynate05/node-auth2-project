@@ -1,4 +1,10 @@
-// Update with your config settings.
+require("dotenv").config();
+
+const pgConnection = process.env.DATABASE_URL || "postgresql://postgres@localhost/auth";
+
+// if using a local postgres server, please create the database manually, Knex will not create it autmatically
+
+// ^^^ for my own reference.
 
 module.exports = {
 
@@ -9,7 +15,7 @@ module.exports = {
       filename: './database/auth.db3'
     },
     pool: {
-      afterCreat: (conn, done) => {
+      afterCreate: (conn, done) => {
         conn.run('PRAGMA foreign_keys = ON', done);
       },
     },
